@@ -128,8 +128,15 @@ const HappyClient = ({ language = 'en' }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+  /* ========================================================
+     🎬 GSAP ANIMATIONS IN HAPPY CLIENT:
+     1. Skyline Car Drive-In Entrance Animation
+     2. Live Animated Statistics Number Counter Tween
+     ======================================================== */
   useEffect(() => {
     if (hasAnimated.current) return
+
+    // 🎬 GSAP ANIMATION 2: Skyline Car Entrance (drives in from left to road baseline)
     if (carRef.current) {
       gsap.fromTo(
         carRef.current,
@@ -138,6 +145,8 @@ const HappyClient = ({ language = 'en' }) => {
       )
     }
 
+    // 🎬 GSAP ANIMATION 3: Live Stats Counter Tween
+    // Smoothly counts from 0 up to 300,000+, 850,000+, 35,000+, and 64
     const targets = t.stats.map(s => s.endVal)
     const animObj = { val0: 0, val1: 0, val2: 0, val3: 0 }
 

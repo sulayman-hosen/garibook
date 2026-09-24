@@ -60,10 +60,15 @@ const Hero = ({ language = "en" }) => {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, textIndex, language]);
 
+  /* ========================================================
+     🎬 GSAP ANIMATION 1: HERO ENTRANCE FADE-UP ANIMATION
+     Animates the main hero title and CTA button on initial page load
+     ======================================================== */
   const heroRef = useRef();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // 1. Hero Title: Fades up and rises from y: 50 with smooth easing
       gsap.from(".hero-title", {
         y: 50,
         opacity: 0,
@@ -71,6 +76,7 @@ const Hero = ({ language = "en" }) => {
         ease: "power3.out",
       });
 
+      // 2. Hero Right CTA & Text: Slides up with a slight delay
       gsap.from(".hero-right", {
         y: 40,
         opacity: 0,
@@ -79,7 +85,7 @@ const Hero = ({ language = "en" }) => {
       });
     }, heroRef);
 
-    return () => ctx.revert();
+    return () => ctx.revert(); // Clean up GSAP animation on unmount
   }, []);
 
   return (
